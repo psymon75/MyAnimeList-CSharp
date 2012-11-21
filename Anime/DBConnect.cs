@@ -7,7 +7,7 @@ using System.Windows.Forms;
 
 namespace Anime
 {
-    class DBConnect
+    public class DBConnect
     {
         private MySqlConnection connection;
         private string server;
@@ -16,18 +16,18 @@ namespace Anime
         private string password;
 
         //Constructor
-        public DBConnect()
+        public DBConnect(string host, string db, string user, string pwd)
         {
+            server = host;
+            database = db;
+            uid = user;
+            password = pwd;
             Initialize();
         }
 
         //Initialize values
         private void Initialize()
         {
-            server = "localhost";
-            database = "myanimelist";
-            uid = "anime";
-            password = "Super";
             string connectionString;
             connectionString = "SERVER=" + server + ";" + "DATABASE=" +
             database + ";" + "UID=" + uid + ";" + "PASSWORD=" + password + ";";
@@ -36,7 +36,7 @@ namespace Anime
         }
 
         //open connection to database
-        private bool OpenConnection()
+        public bool OpenConnection()
         {
             if (connection.State == System.Data.ConnectionState.Open)
             {
@@ -72,7 +72,7 @@ namespace Anime
         }
 
         //Close connection
-        private bool CloseConnection()
+        public bool CloseConnection()
         {
             try
             {

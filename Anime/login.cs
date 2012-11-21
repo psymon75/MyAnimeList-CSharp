@@ -16,7 +16,7 @@ namespace Anime
     {
         WebClient client = new WebClient();
         
-        private string pseudo;
+        private string pseudo,mdp;
 
         public login()
         {
@@ -27,33 +27,29 @@ namespace Anime
         {
 
             pseudo = txbPseudo.Text.Trim();
-            Form1 frm = new Form1(pseudo, client);
-            frm.Show();
-            this.Visible = false;
-                //string req = "http://mal-api.com/account/verify_credentials";
-                //HttpWebRequest request = null;
-                //HttpWebResponse response = null;
-                //try
-                //{
-                    
-                //    request = (HttpWebRequest)WebRequest.Create(req);//OK 200
-                //    request.Credentials = new NetworkCredential(pseudo, txbMdp.Text);
-                //    response = (HttpWebResponse)request.GetResponse();
-                //    MessageBox.Show(response.StatusCode.ToString());
-                    
-                //}
-                //catch (Exception bad)
-                //{
-                //    MessageBox.Show(bad.Message);
-                //}
-                //finally
-                //{
+            mdp = txbMdp.Text.Trim();
 
-                //    Form1 frm = new Form1(pseudo, client);
-                //    frm.Show();
-                //    this.Visible = false;
+            //string req = "http://mal-api.com/account/verify_credentials";
+            //HttpWebRequest request = null;
+            //HttpWebResponse response = null;
+            
+
+                //request = (HttpWebRequest)WebRequest.Create(req);//OK 200
+                //request.Credentials = new NetworkCredential(pseudo, txbMdp.Text);
+                //response = (HttpWebResponse)request.GetResponse();
+                //if (response.StatusCode.ToString() == "OK")
+                //{
+                    Form1 frm = new Form1(pseudo,mdp, client);
+                    frm.Show();
+                    this.Visible = false;
                 //}
+                //else
+                //{
+                //    MessageBox.Show("Erreur login");
+                //}
+
                 
+             
             
         }
 
@@ -62,7 +58,7 @@ namespace Anime
             MessageBox.Show(e.Error.ToString());
             if (e.Error.ToString() == "200" )
             {
-                Form1 frm = new Form1(pseudo, client);
+                Form1 frm = new Form1(pseudo,mdp, client);
                 frm.Show();
                 this.Visible = false;
             }

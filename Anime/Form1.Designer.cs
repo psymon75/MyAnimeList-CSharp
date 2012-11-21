@@ -38,12 +38,21 @@
             this.myListToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.myAnimeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.myFavouritesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.saveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toMySQLToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolstripLoading = new System.Windows.Forms.ToolStripProgressBar();
             this.toolstripInfo = new System.Windows.Forms.ToolStripStatusLabel();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.saveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toMySQLToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toHTMLToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toXMLToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.cmdStatus = new System.Windows.Forms.ComboBox();
+            this.btnSetStatus = new System.Windows.Forms.Button();
+            this.btnSaveToMAL = new System.Windows.Forms.Button();
+            this.SFD = new System.Windows.Forms.SaveFileDialog();
+            this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
+            this.toolStripSQLState = new System.Windows.Forms.ToolStripStatusLabel();
             this.menu.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -84,7 +93,7 @@
             this.libInfos.ItemHeight = 14;
             this.libInfos.Location = new System.Drawing.Point(405, 68);
             this.libInfos.Name = "libInfos";
-            this.libInfos.Size = new System.Drawing.Size(402, 284);
+            this.libInfos.Size = new System.Drawing.Size(402, 256);
             this.libInfos.TabIndex = 3;
             // 
             // menu
@@ -135,11 +144,31 @@
             this.myFavouritesToolStripMenuItem.Size = new System.Drawing.Size(153, 22);
             this.myFavouritesToolStripMenuItem.Text = "My Favourites";
             // 
+            // saveToolStripMenuItem
+            // 
+            this.saveToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toMySQLToolStripMenuItem,
+            this.toFileToolStripMenuItem,
+            this.toHTMLToolStripMenuItem,
+            this.toXMLToolStripMenuItem});
+            this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
+            this.saveToolStripMenuItem.Size = new System.Drawing.Size(43, 20);
+            this.saveToolStripMenuItem.Text = "Save";
+            // 
+            // toMySQLToolStripMenuItem
+            // 
+            this.toMySQLToolStripMenuItem.Name = "toMySQLToolStripMenuItem";
+            this.toMySQLToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.toMySQLToolStripMenuItem.Text = "To MySQL";
+            this.toMySQLToolStripMenuItem.Click += new System.EventHandler(this.toMySQLToolStripMenuItem_Click);
+            // 
             // statusStrip1
             // 
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolstripLoading,
-            this.toolstripInfo});
+            this.toolstripInfo,
+            this.toolStripStatusLabel1,
+            this.toolStripSQLState});
             this.statusStrip1.Location = new System.Drawing.Point(0, 365);
             this.statusStrip1.Name = "statusStrip1";
             this.statusStrip1.Size = new System.Drawing.Size(1117, 22);
@@ -164,26 +193,76 @@
             this.pictureBox1.TabIndex = 6;
             this.pictureBox1.TabStop = false;
             // 
-            // saveToolStripMenuItem
+            // toFileToolStripMenuItem
             // 
-            this.saveToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toMySQLToolStripMenuItem});
-            this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
-            this.saveToolStripMenuItem.Size = new System.Drawing.Size(43, 20);
-            this.saveToolStripMenuItem.Text = "Save";
+            this.toFileToolStripMenuItem.Name = "toFileToolStripMenuItem";
+            this.toFileToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.toFileToolStripMenuItem.Text = "To File";
             // 
-            // toMySQLToolStripMenuItem
+            // toHTMLToolStripMenuItem
             // 
-            this.toMySQLToolStripMenuItem.Name = "toMySQLToolStripMenuItem";
-            this.toMySQLToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.toMySQLToolStripMenuItem.Text = "To MySQL";
-            this.toMySQLToolStripMenuItem.Click += new System.EventHandler(this.toMySQLToolStripMenuItem_Click);
+            this.toHTMLToolStripMenuItem.Name = "toHTMLToolStripMenuItem";
+            this.toHTMLToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.toHTMLToolStripMenuItem.Text = "To HTML";
+            // 
+            // toXMLToolStripMenuItem
+            // 
+            this.toXMLToolStripMenuItem.Name = "toXMLToolStripMenuItem";
+            this.toXMLToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.toXMLToolStripMenuItem.Text = "To XML";
+            this.toXMLToolStripMenuItem.Click += new System.EventHandler(this.toXMLToolStripMenuItem_Click);
+            // 
+            // cmdStatus
+            // 
+            this.cmdStatus.FormattingEnabled = true;
+            this.cmdStatus.Items.AddRange(new object[] {
+            "Watched",
+            "Plan to watch",
+            "Watching"});
+            this.cmdStatus.Location = new System.Drawing.Point(405, 331);
+            this.cmdStatus.Name = "cmdStatus";
+            this.cmdStatus.Size = new System.Drawing.Size(121, 21);
+            this.cmdStatus.TabIndex = 7;
+            // 
+            // btnSetStatus
+            // 
+            this.btnSetStatus.Location = new System.Drawing.Point(533, 328);
+            this.btnSetStatus.Name = "btnSetStatus";
+            this.btnSetStatus.Size = new System.Drawing.Size(75, 23);
+            this.btnSetStatus.TabIndex = 8;
+            this.btnSetStatus.Text = "Set status";
+            this.btnSetStatus.UseVisualStyleBackColor = true;
+            this.btnSetStatus.Click += new System.EventHandler(this.btnSetStatus_Click);
+            // 
+            // btnSaveToMAL
+            // 
+            this.btnSaveToMAL.Location = new System.Drawing.Point(715, 328);
+            this.btnSaveToMAL.Name = "btnSaveToMAL";
+            this.btnSaveToMAL.Size = new System.Drawing.Size(92, 23);
+            this.btnSaveToMAL.TabIndex = 9;
+            this.btnSaveToMAL.Text = "Save to MAL";
+            this.btnSaveToMAL.UseVisualStyleBackColor = true;
+            this.btnSaveToMAL.Click += new System.EventHandler(this.btnSaveToMAL_Click);
+            // 
+            // toolStripStatusLabel1
+            // 
+            this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
+            this.toolStripStatusLabel1.Size = new System.Drawing.Size(99, 17);
+            this.toolStripStatusLabel1.Text = "MySQL connexion :";
+            // 
+            // toolStripSQLState
+            // 
+            this.toolStripSQLState.Name = "toolStripSQLState";
+            this.toolStripSQLState.Size = new System.Drawing.Size(0, 17);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1117, 387);
+            this.Controls.Add(this.btnSaveToMAL);
+            this.Controls.Add(this.btnSetStatus);
+            this.Controls.Add(this.cmdStatus);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.libInfos);
@@ -223,6 +302,15 @@
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.ToolStripMenuItem saveToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem toMySQLToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem toFileToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem toHTMLToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem toXMLToolStripMenuItem;
+        private System.Windows.Forms.ComboBox cmdStatus;
+        private System.Windows.Forms.Button btnSetStatus;
+        private System.Windows.Forms.Button btnSaveToMAL;
+        private System.Windows.Forms.SaveFileDialog SFD;
+        private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel1;
+        private System.Windows.Forms.ToolStripStatusLabel toolStripSQLState;
     }
 }
 
