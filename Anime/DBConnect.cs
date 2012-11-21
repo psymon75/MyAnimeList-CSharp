@@ -87,26 +87,23 @@ namespace Anime
         }
 
         //Insert statement
-        public void Save(Dictionary<string, Dictionary<string,string>> manga, string pseudo)
+        public void Save(Dictionary<string, Dictionary<string,string>> manga)
         {
             if(OpenConnection() == true)
             {
-                if (userExist(pseudo) != true)
-                {
-                    createUser(pseudo);
-                }
-                int idpseudo = getIdUser(pseudo);
+                Dictionary<string, string> fields = new Dictionary<string, string>();
+
+                KeyValuePair<string, Dictionary<string, string>> pair = manga.First();
+                    fields = pair.Value;
                 string query = "";
-                foreach (KeyValuePair<string, Dictionary<string, string>> pair in manga)
+                query += @"CREATE TABLE IF NOT EXISTS 'tanime' (
+  'idAnime' int(11) NOT NULL AUTO_INCREMENT";
+                foreach(KeyValuePair<string,string> field in fields)
                 {
-                    string name = pair.Key.Replace('"', ' ');
-                    name = name.TrimStart();
-                    name = name.TrimEnd();
-                    query += "INSERT INTO tanime(name, user) VALUES (\""+name+"\"," + idpseudo + " );";
+                    query += @",'"+field.Key+"' varchar(255)";
                 }
-                //Create Command
-                MySqlCommand cmd = new MySqlCommand(query, connection);
-                cmd.ExecuteNonQuery();
+  query += @"PRIMARY KEY ('idAnime')) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;";
+
             }
         }
 

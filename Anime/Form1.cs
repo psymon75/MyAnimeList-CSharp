@@ -20,7 +20,7 @@ namespace Anime
         string pseudo, mdp, currentAnime;
         WebClient client = new WebClient();
         Dictionary<string, string> infos = new Dictionary<string, string>();
-        Dictionary<string, Dictionary<string, string>> manga = new Dictionary<string, Dictionary<string, string>>();
+        public Dictionary<string, Dictionary<string, string>> manga = new Dictionary<string, Dictionary<string, string>>();
 
 
         public Form1(string pseudoin, string mdpin, WebClient clientin)
@@ -312,7 +312,6 @@ namespace Anime
             }
             StreamReader sr = null;
             StreamWriter sw = null;
-            string line;
             string fichier = "";
 
             SFD.Filter = "XML File (*.xml)|*.xml|All files (*.*)|*.*";
