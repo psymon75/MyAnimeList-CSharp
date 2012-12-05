@@ -40,19 +40,20 @@
             this.myFavouritesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.saveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toMySQLToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
-            this.toolstripLoading = new System.Windows.Forms.ToolStripProgressBar();
-            this.toolstripInfo = new System.Windows.Forms.ToolStripStatusLabel();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.toFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toHTMLToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toXMLToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
+            this.toolstripLoading = new System.Windows.Forms.ToolStripProgressBar();
+            this.toolstripInfo = new System.Windows.Forms.ToolStripStatusLabel();
+            this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
+            this.toolStripSQLState = new System.Windows.Forms.ToolStripStatusLabel();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.cmdStatus = new System.Windows.Forms.ComboBox();
             this.btnSetStatus = new System.Windows.Forms.Button();
             this.btnSaveToMAL = new System.Windows.Forms.Button();
             this.SFD = new System.Windows.Forms.SaveFileDialog();
-            this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
-            this.toolStripSQLState = new System.Windows.Forms.ToolStripStatusLabel();
+            this.btnSaveDisk = new System.Windows.Forms.Button();
             this.menu.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -158,9 +159,28 @@
             // toMySQLToolStripMenuItem
             // 
             this.toMySQLToolStripMenuItem.Name = "toMySQLToolStripMenuItem";
-            this.toMySQLToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.toMySQLToolStripMenuItem.Size = new System.Drawing.Size(133, 22);
             this.toMySQLToolStripMenuItem.Text = "To MySQL";
             this.toMySQLToolStripMenuItem.Click += new System.EventHandler(this.toMySQLToolStripMenuItem_Click);
+            // 
+            // toFileToolStripMenuItem
+            // 
+            this.toFileToolStripMenuItem.Name = "toFileToolStripMenuItem";
+            this.toFileToolStripMenuItem.Size = new System.Drawing.Size(133, 22);
+            this.toFileToolStripMenuItem.Text = "To File";
+            // 
+            // toHTMLToolStripMenuItem
+            // 
+            this.toHTMLToolStripMenuItem.Name = "toHTMLToolStripMenuItem";
+            this.toHTMLToolStripMenuItem.Size = new System.Drawing.Size(133, 22);
+            this.toHTMLToolStripMenuItem.Text = "To HTML";
+            // 
+            // toXMLToolStripMenuItem
+            // 
+            this.toXMLToolStripMenuItem.Name = "toXMLToolStripMenuItem";
+            this.toXMLToolStripMenuItem.Size = new System.Drawing.Size(133, 22);
+            this.toXMLToolStripMenuItem.Text = "To XML";
+            this.toXMLToolStripMenuItem.Click += new System.EventHandler(this.toXMLToolStripMenuItem_Click);
             // 
             // statusStrip1
             // 
@@ -169,7 +189,7 @@
             this.toolstripInfo,
             this.toolStripStatusLabel1,
             this.toolStripSQLState});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 365);
+            this.statusStrip1.Location = new System.Drawing.Point(0, 397);
             this.statusStrip1.Name = "statusStrip1";
             this.statusStrip1.Size = new System.Drawing.Size(1117, 22);
             this.statusStrip1.TabIndex = 5;
@@ -185,6 +205,17 @@
             this.toolstripInfo.Name = "toolstripInfo";
             this.toolstripInfo.Size = new System.Drawing.Size(0, 17);
             // 
+            // toolStripStatusLabel1
+            // 
+            this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
+            this.toolStripStatusLabel1.Size = new System.Drawing.Size(99, 17);
+            this.toolStripStatusLabel1.Text = "MySQL connexion :";
+            // 
+            // toolStripSQLState
+            // 
+            this.toolStripSQLState.Name = "toolStripSQLState";
+            this.toolStripSQLState.Size = new System.Drawing.Size(0, 17);
+            // 
             // pictureBox1
             // 
             this.pictureBox1.Location = new System.Drawing.Point(833, 68);
@@ -192,25 +223,6 @@
             this.pictureBox1.Size = new System.Drawing.Size(272, 284);
             this.pictureBox1.TabIndex = 6;
             this.pictureBox1.TabStop = false;
-            // 
-            // toFileToolStripMenuItem
-            // 
-            this.toFileToolStripMenuItem.Name = "toFileToolStripMenuItem";
-            this.toFileToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.toFileToolStripMenuItem.Text = "To File";
-            // 
-            // toHTMLToolStripMenuItem
-            // 
-            this.toHTMLToolStripMenuItem.Name = "toHTMLToolStripMenuItem";
-            this.toHTMLToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.toHTMLToolStripMenuItem.Text = "To HTML";
-            // 
-            // toXMLToolStripMenuItem
-            // 
-            this.toXMLToolStripMenuItem.Name = "toXMLToolStripMenuItem";
-            this.toXMLToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.toXMLToolStripMenuItem.Text = "To XML";
-            this.toXMLToolStripMenuItem.Click += new System.EventHandler(this.toXMLToolStripMenuItem_Click);
             // 
             // cmdStatus
             // 
@@ -244,22 +256,22 @@
             this.btnSaveToMAL.UseVisualStyleBackColor = true;
             this.btnSaveToMAL.Click += new System.EventHandler(this.btnSaveToMAL_Click);
             // 
-            // toolStripStatusLabel1
+            // btnSaveDisk
             // 
-            this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
-            this.toolStripStatusLabel1.Size = new System.Drawing.Size(99, 17);
-            this.toolStripStatusLabel1.Text = "MySQL connexion :";
-            // 
-            // toolStripSQLState
-            // 
-            this.toolStripSQLState.Name = "toolStripSQLState";
-            this.toolStripSQLState.Size = new System.Drawing.Size(0, 17);
+            this.btnSaveDisk.Location = new System.Drawing.Point(118, 359);
+            this.btnSaveDisk.Name = "btnSaveDisk";
+            this.btnSaveDisk.Size = new System.Drawing.Size(75, 23);
+            this.btnSaveDisk.TabIndex = 10;
+            this.btnSaveDisk.Text = "Save to disk";
+            this.btnSaveDisk.UseVisualStyleBackColor = true;
+            this.btnSaveDisk.Click += new System.EventHandler(this.btnSaveDisk_Click);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1117, 387);
+            this.ClientSize = new System.Drawing.Size(1117, 419);
+            this.Controls.Add(this.btnSaveDisk);
             this.Controls.Add(this.btnSaveToMAL);
             this.Controls.Add(this.btnSetStatus);
             this.Controls.Add(this.cmdStatus);
@@ -274,6 +286,7 @@
             this.Name = "Form1";
             this.Text = "My Anime List";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Form1_FormClosed);
+            this.Load += new System.EventHandler(this.Form1_Load);
             this.menu.ResumeLayout(false);
             this.menu.PerformLayout();
             this.statusStrip1.ResumeLayout(false);
@@ -311,6 +324,7 @@
         private System.Windows.Forms.SaveFileDialog SFD;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel1;
         private System.Windows.Forms.ToolStripStatusLabel toolStripSQLState;
+        private System.Windows.Forms.Button btnSaveDisk;
     }
 }
 

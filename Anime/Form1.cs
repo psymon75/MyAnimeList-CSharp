@@ -16,7 +16,7 @@ namespace Anime
     public partial class Form1 : Form
     {
         public DBConnect db;
-
+        public const string FILE_SAVE = "save.xml";
         string pseudo, mdp, currentAnime;
         WebClient client = new WebClient();
         Dictionary<string, string> infos = new Dictionary<string, string>();
@@ -288,7 +288,7 @@ namespace Anime
             return int.Parse(infos["id"]);
         }
 
-        private void toXMLToolStripMenuItem_Click(object sender, EventArgs e)
+        private string animeToXML()
         {
             string output = "";
             StringBuilder sb = new StringBuilder();
@@ -310,6 +310,12 @@ namespace Anime
                 output += IndentXMLString(xml.InnerXml);
 
             }
+            return output;
+        }
+
+        private void toXMLToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            string output = animeToXML();
             StreamReader sr = null;
             StreamWriter sw = null;
             string fichier = "";
@@ -384,6 +390,47 @@ namespace Anime
                 MessageBox.Show(ex.ToString());
                 return string.Empty;
             }
+        }
+
+        private void btnSaveDisk_Click(object sender, EventArgs e)
+        {
+            string output = animeToXML();
+            StreamReader sr = null;
+            StreamWriter sw = null;
+            string fichier = FILE_SAVE;
+                try
+                {
+                    if (File.Exists(fichier))
+                    {
+                        File.Delete(fichier);
+                    }
+                    // Le fichier n'existe pas. On le crée.
+                    sw = new StreamWriter(fichier);
+                    sw.WriteLine(output);
+                    sw.Close();
+                    sw = null;
+                    // Remarque : On peut utiliser sw = File.AppendText(NomFichier) pour ajouter
+                    // du texte à un fichier existant
+
+
+                }
+                finally
+                {
+
+                    // Fermeture streamreader
+                    if (sr != null) sr.Close();
+                    // Fermeture streamwriter
+                    if (sw != null) sw.Close();
+                }
+            }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            if(File.Exists(FILE_SAVE))
+            {
+
+            }
+        }
         }
 
     }
