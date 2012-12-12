@@ -191,7 +191,14 @@ namespace Anime
 
                     }
                     client.DownloadDataCompleted += new DownloadDataCompletedEventHandler(client_DownloadDataCompleted);
-                    client.DownloadDataAsync(new Uri(chemin)); //DownloadData function from here
+                    if (client.IsBusy == true)
+                    {
+                        MessageBox.Show("A download task is actually running.");
+                    }
+                    else
+                    {
+                        client.DownloadDataAsync(new Uri(chemin)); //DownloadData function from here
+                    }
 
                 }
             }
@@ -431,7 +438,6 @@ namespace Anime
 
             }
         }
-        }
-
+        
     }
 }
