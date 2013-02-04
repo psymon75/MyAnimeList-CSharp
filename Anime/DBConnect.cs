@@ -86,6 +86,11 @@ namespace Anime
             }
         }
 
+        public void mangaAlreadyIn(string name)
+        {
+
+        }
+
         //Insert statement
         public void Save(Dictionary<string, Dictionary<string,string>> manga)
         {

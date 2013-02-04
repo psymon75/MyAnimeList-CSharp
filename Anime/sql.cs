@@ -14,6 +14,7 @@ namespace Anime
 
     {
         const string FICHIERCONFIG = "sqlinfos.txt";
+        DBConnect db;
         Form1 frm;
         public sql(Form1 frmin)
         {
@@ -42,9 +43,13 @@ namespace Anime
         {
             if (frm.manga != null)
             {
-                DBConnect db = new DBConnect(txbHost.Text, txbDatabase.Text, txbUser.Text, txbPassword.Text);
+                db = new DBConnect(txbHost.Text, txbDatabase.Text, txbUser.Text, txbPassword.Text);
                 if (db.OpenConnection() == true)
                 {
+                    listBox1.Items.Add("Connecté au serveur...");
+                    listBox1.Items.Add("Create the database strucuture if needed...");
+                    listBox1.Items.Add("Check if user is already in DB...");
+                    listBox1.Items.Add("Synchronize...");
                     db.Save(frm.manga);
                     db.CloseConnection();
                     frm.db = db;
